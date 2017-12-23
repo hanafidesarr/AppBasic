@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CustomValidators } from 'ng2-validation';
 
+import { RegisterTypeSellerPage } from './register-type-seller/register-type-seller';
+
+// services
+import { AuthServicesProvider } from '../../providers/auth-services/auth-services';
+import { SharedServicesProvider } from '../../providers/shared-services/shared-services';
+
 // model
-import { Register } from '../../model/register';
+import { Register } from '../../models/register';
 
 @IonicPage()
 @Component({
@@ -16,10 +22,13 @@ export class RegisterPage {
 
   registerForm: FormGroup;
   register: Register;
+
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public _formBuilder: FormBuilder) {
+    public _navCtrl: NavController,
+    public _formBuilder: FormBuilder,
+    public _authService: AuthServicesProvider,
+    public _sharedServices: SharedServicesProvider
+  ) {
   }
 
   buildForm() {
@@ -27,7 +36,8 @@ export class RegisterPage {
       username: ['', Validators.required],
       email: ['', [Validators.required, CustomValidators.email]],
       phone: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      password_confirmation: ['', Validators.required]
     });
   }
 
@@ -36,6 +46,16 @@ export class RegisterPage {
   }
 
   onSave() {
-    this.registerForm.value
+    this.register = this.registerForm.value;
+    this._sharedServices.showLoader().then(response => {
+      this._authService.postRegister(this.register).subscribe(response => {
+        this._sharedServices.hideLoader();
+        this._navCtrl.push(RegisterTypeSellerPage);
+      }, (err) => {
+        this._sharedServices.hideLoader();
+        this._sharedServices.errorToast('Error')
+        this._navCtrl.push(RegisterTypeSellerPage);
+      })
+    })
   }
 }

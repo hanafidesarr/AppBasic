@@ -1,18 +1,13 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Register</ion-title>
-  </ion-navbar>
-</ion-header>
 
-
-<ion-content padding color="danger">
+<ion-content class="background-page" padding>
 
   <form [formGroup]="registerForm" class="form-validate" novalidate>
     <ion-row>
       <ion-item>
-        <ion-label floating>
-          <ion-icon name="person" small style="width:20px;"></ion-icon>Username</ion-label>
-        <ion-input type="text" formControlName="username"></ion-input>
+        <ion-label>
+          <ion-icon name="person" small></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
         <ion-icon *ngIf="registerForm.controls.username.value !== '' && registerForm.controls.username.dirty" item-end small name="checkmark"
           class="mark-true"></ion-icon>
         <ion-icon *ngIf="registerForm.controls.username.value === '' && registerForm.controls.username.dirty" item-end small name="close"
@@ -20,43 +15,50 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>
-          <ion-icon name="at" small style="width:20px;"></ion-icon>Email</ion-label>
-        <ion-input type="email" formControlName="email"></ion-input>
+        <ion-label>
+          <ion-icon name="at" small></ion-icon>
+        </ion-label>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
         <ion-icon *ngIf="registerForm.controls.email.valid" item-end small name="checkmark" class="mark-true"></ion-icon>
         <ion-icon *ngIf="registerForm.controls.email.value === '' && registerForm.controls.email.dirty || registerForm.controls.email.errors?.email"
           item-end small name="close" class="mark-false"></ion-icon>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>
-          <ion-icon name="phone-portrait" small style="width:20px;"></ion-icon>Phone</ion-label>
-        <ion-input type="text" formControlName="phone"></ion-input>
-
+        <ion-label>
+          <ion-icon name="phone-portrait" small></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="Phone" formControlName="phone"></ion-input>
         <ion-icon *ngIf="registerForm.controls.phone.value !== '' && registerForm.controls.phone.dirty" item-end small name="checkmark"
           class="mark-true"></ion-icon>
-
         <ion-icon *ngIf="registerForm.controls.phone.value === '' && registerForm.controls.phone.dirty" item-end small name="close"
           class="mark-false"></ion-icon>
-
       </ion-item>
 
       <ion-item>
-        <ion-label floating>
-          <ion-icon name="lock" small style="width:20px;"></ion-icon>Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-
+        <ion-label>
+          <ion-icon name="lock" small></ion-icon></ion-label>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
         <ion-icon *ngIf="registerForm.controls.password.value !== '' && registerForm.controls.password.dirty" item-end small name="checkmark"
           class="mark-true"></ion-icon>
-
         <ion-icon *ngIf="registerForm.controls.password.value === '' && registerForm.controls.password.dirty" item-end small name="close"
           class="mark-false"></ion-icon>
-
       </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="lock" small></ion-icon></ion-label>
+        <ion-input type="password" placeholder="Password Confirmation" formControlName="password_confirmation"></ion-input>
+        <ion-icon *ngIf="registerForm.controls.password_confirmation.value !== '' && registerForm.controls.password_confirmation.dirty"
+          item-end small name="checkmark" class="mark-true"></ion-icon>
+        <ion-icon *ngIf="registerForm.controls.password_confirmation.value === '' && registerForm.controls.password_confirmation.dirty"
+          item-end small name="close" class="mark-false"></ion-icon>
+      </ion-item>
+
     </ion-row>
     <ion-col>
-      <ion-buttons padding>
-        <button ion-button block color="danger" class="btn-submit" (click)="onSave()">TROVA</button>
+      <ion-buttons class="btn-submit">
+        <button ion-button block color="button-green" (click)="onSave()">Registrasi</button>
       </ion-buttons>
     </ion-col>
   </form>

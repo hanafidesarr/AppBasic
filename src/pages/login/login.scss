@@ -1,29 +1,34 @@
-page-register {
+page-login {
+     ::-webkit-input-placeholder {
+        text-align: center;
+    }
     form {
-        margin-top: 20%;
+        margin-top: 40%;
     }
     .background-page {
         background-image: url('/assets/img/background-login.jpg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-    }
-    .label {
-        margin: 0 !important;
-        width: 15px;
-    }
-    .item {
-        background: transparent;
-        margin-bottom: 3%;
+        width: 100%;
     }
     .mark-true {
         color: green;
+        margin-left: 100px
     }
     .mark-false {
         color: red;
     }
     .btn-submit {
-        height: 2.6rem;
         padding: 16px 18%;
+    }
+    .item {
+        background: transparent;
+        padding-left: 15%;
+        padding-right: 15%;
+        text-align: center
+    }
+    .link-registration {
+        padding: 30px 16px;
     }
 }

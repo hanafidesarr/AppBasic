@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CustomValidators } from 'ng2-validation';
 
-import { RegisterTypeSellerPage } from './register-type-seller/register-type-seller';
-
 // services
 import { AuthServicesProvider } from '../../providers/auth-services/auth-services';
 import { SharedServicesProvider } from '../../providers/shared-services/shared-services';
@@ -50,11 +48,11 @@ export class RegisterPage {
     this._sharedServices.showLoader().then(response => {
       this._authService.postRegister(this.register).subscribe(response => {
         this._sharedServices.hideLoader();
-        this._navCtrl.push(RegisterTypeSellerPage);
+        this._navCtrl.push('RegisterTypeSellerPage');
       }, (err) => {
         this._sharedServices.hideLoader();
         this._sharedServices.errorToast('Error')
-        this._navCtrl.push(RegisterTypeSellerPage);
+        this._navCtrl.push('RegisterTypeSellerPage');
       })
     })
   }

@@ -1,4 +1,3 @@
-
 <ion-content class="background-page" padding>
 
   <form [formGroup]="registerForm" class="form-validate" novalidate>
@@ -37,7 +36,8 @@
 
       <ion-item>
         <ion-label>
-          <ion-icon name="lock" small></ion-icon></ion-label>
+          <ion-icon name="lock" small></ion-icon>
+        </ion-label>
         <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
         <ion-icon *ngIf="registerForm.controls.password.value !== '' && registerForm.controls.password.dirty" item-end small name="checkmark"
           class="mark-true"></ion-icon>
@@ -47,7 +47,8 @@
 
       <ion-item>
         <ion-label>
-          <ion-icon name="lock" small></ion-icon></ion-label>
+          <ion-icon name="lock" small></ion-icon>
+        </ion-label>
         <ion-input type="password" placeholder="Password Confirmation" formControlName="password_confirmation"></ion-input>
         <ion-icon *ngIf="registerForm.controls.password_confirmation.value !== '' && registerForm.controls.password_confirmation.dirty"
           item-end small name="checkmark" class="mark-true"></ion-icon>

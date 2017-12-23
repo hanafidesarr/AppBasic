@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App } from 'ionic-angular';
+import { NavController, App, IonicPage } from 'ionic-angular';
 
 import { RegisterPage } from '../register/register';
 import { LoginPage } from '../login/login';
@@ -7,6 +7,7 @@ import { LoginPage } from '../login/login';
 // Services
 import { SharedServicesProvider } from '../../providers/shared-services/shared-services';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -24,7 +25,7 @@ export class HomePage {
     this._sharedServices.showLoader().then(response => {
       if (!this.statusLogin) {
         this._sharedServices.hideLoader();
-        this._app.getRootNav().setRoot(LoginPage);
+        this._app.getRootNav().setRoot('LoginPage');
       }
     })
   }

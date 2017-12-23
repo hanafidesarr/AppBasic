@@ -31,6 +31,5 @@ export class SharedServicesProvider {
 
   hideLoader() {
     this.loading.dismissAll();
-    this.loading = null;
   }
 }

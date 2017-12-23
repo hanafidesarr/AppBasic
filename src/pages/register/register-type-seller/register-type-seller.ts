@@ -8,7 +8,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegisterTypeSellerPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  typeSellers: Array<any> = [
+    { 'image': '/assets/img/photo.jpg', 'displayName':'Traveler', 'value': 'traveler' },
+    { 'image': '/assets/img/photo.jpg', 'displayName':'Stay', 'value': 'stay' }]
+
+  constructor(
+    public _navParams: NavParams,
+    public _navCtrl: NavController) {
+
   }
 
   ionViewDidLoad() {

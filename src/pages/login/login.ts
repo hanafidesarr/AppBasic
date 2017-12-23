@@ -47,8 +47,7 @@ export class LoginPage {
         this._navCtrl.pop();
       }, (err) => {
         this._sharedServices.hideLoader();
-        const error = JSON.parse(err._body)
-        this._sharedServices.errorToast(error.message)
+        this._sharedServices.errorToast('Error')
       })
     })
   }

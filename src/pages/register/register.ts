@@ -46,6 +46,9 @@ export class RegisterPage {
     this.register = this.registerForm.value;
     this._sharedServices.showLoader().then(response => {
       this._authService.postRegister(this.register).subscribe(response => {
+
+        this._authService.setLoginStatus(response);
+        
         this._sharedServices.hideLoader();
         this._navCtrl.push('RegisterTypeSellerPage');
       }, (err) => {

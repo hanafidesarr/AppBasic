@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, App, IonicPage } from 'ionic-angular';
 
-import { RegisterPage } from '../register/register';
-import { LoginPage } from '../login/login';
-
 // Services
+import { AuthServicesProvider } from '../../providers/auth-services/auth-services';
 import { SharedServicesProvider } from '../../providers/shared-services/shared-services';
 
 @IonicPage()
@@ -19,14 +17,25 @@ export class HomePage {
   constructor(
     public _app: App,
     public _navCtrl: NavController,
+    public _authServices: AuthServicesProvider,
     public _sharedServices: SharedServicesProvider) {
+
   }
+
   ionViewDidEnter() {
+    this.statusLogin = this._authServices.getLoginStatus();
     this._sharedServices.showLoader().then(response => {
       if (!this.statusLogin) {
         this._sharedServices.hideLoader();
         this._app.getRootNav().setRoot('LoginPage');
+      } else {
+        this._sharedServices.hideLoader();
       }
     })
+  }
+
+  doLogOut() {
+    this._authServices.doLogOut();
+    this._navCtrl.push('LoginPage');
   }
 }

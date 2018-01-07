@@ -30,7 +30,7 @@ export class LoginPage {
 
   buildForm() {
     this.loginForm = this._formBuilder.group({
-      email: ['', [Validators.required, CustomValidators.email]],
+      login: ['', [Validators.required, CustomValidators.email]],
       password: ['', Validators.required]
     });
   }
@@ -43,8 +43,9 @@ export class LoginPage {
     this.login = this.loginForm.value;
     this._sharedServices.showLoader().then(response => {
       this._authService.postLogin(this.login).subscribe(response => {
+        this._authService.setLoginStatus(response);
         this._sharedServices.hideLoader();
-        this._navCtrl.pop();
+        this._navCtrl.push('HomePage')
       }, (err) => {
         this._sharedServices.hideLoader();
         this._sharedServices.errorToast('Error')

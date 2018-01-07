@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
-import { RequestMethod } from '@angular/http';
+import { Http, Headers} from '@angular/http';
 
 import { AppApi } from '../../ignore-files/api-server';
 import 'rxjs/add/operator/map';
@@ -12,34 +10,52 @@ import { Register } from '../../models/register';
 
 @Injectable()
 export class AuthServicesProvider {
+  authHeaders: any = null;
+  constructor(public _http: Http) {
+    this.authHeaders = localStorage.getItem('token');
+  }
 
-  constructor(public _http: HttpClient,
-    public _authServiceProvider: Angular2TokenService) {
+  getDefaultHeaders(): Headers {
+    const headers = new Headers();
 
-    this._authServiceProvider.init({
-      globalOptions: {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      }
-    })
+    headers.append('Authorization', this.authHeaders);
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept-Language', 'en_US');
+    
+    const timezoneOffset = new Date().getTimezoneOffset();
+    headers.append('Timezone-Offset', timezoneOffset.toString());
+    return headers;
+  }
+
+  setLoginStatus(e) {
+    localStorage.setItem('token', e.auth_token);
+    localStorage.setItem('statusLogin', 'true');
+  }
+
+  getLoginStatus() {
+    const statusLogin = JSON.parse(localStorage.getItem('statusLogin'));
+    return statusLogin;  
+  }
+
+  doLogOut() {
+    localStorage.clear()
+    return true;
   }
 
   postLogin(login: Login) {
-    return this._authServiceProvider.request({
-      method: RequestMethod.Post,
-      url: AppApi.BASE_API_URL + 'auth/login',
-      body: login
-    }).map(res => res.json())
+    const headers = this.getDefaultHeaders();
+    return this._http.post(AppApi.BASE_API_URL + 'auth/login', login, {headers: headers}).map(res => res.json())
   }
 
   postRegister(register: Register) {
-    return this._authServiceProvider.request({
-      method: RequestMethod.Post,
-      url: AppApi.BASE_API_URL + 'sellers',
-      body: register
-    }).map(res => res.json())
+    const headers = this.getDefaultHeaders();
+    return this._http.post(AppApi.BASE_API_URL + 'sellers', register, {headers: headers}).map(res => res.json())
+  }
+
+  postTypeSeller(typeSeller: object) {
+    const headers = this.getDefaultHeaders();
+    return this._http.post(AppApi.BASE_API_URL + 'seller_accounts', typeSeller, {headers: headers}).map(res => res)
   }
 
 }

@@ -1,9 +1,9 @@
 <ion-content padding class="background-page">
   <form [formGroup]="loginForm" novalidate>
     <ion-item style="text-align: center; margin-bottom: 3%;">
-      <ion-input placeholder="Email" type="email" formControlName="email"></ion-input>
-      <ion-icon *ngIf="loginForm.controls.email.valid" item-end small name="checkmark" class="mark-true"></ion-icon>
-      <ion-icon *ngIf="loginForm.controls.email.value === '' && loginForm.controls.email.dirty || loginForm.controls.email.errors?.email"
+      <ion-input placeholder="Email" type="email" formControlName="login"></ion-input>
+      <ion-icon *ngIf="loginForm.controls.login.valid" item-end small name="checkmark" class="mark-true"></ion-icon>
+      <ion-icon *ngIf="loginForm.controls.login.value === '' && loginForm.controls.login.dirty || loginForm.controls.login.errors?.login"
         item-end small name="close" class="mark-false"></ion-icon>
     </ion-item>
 
@@ -22,6 +22,6 @@
     </ion-col>
   </form>
   <div text-center class="link-registration">
-    <a (click)="goRegister()">Registrasi?</a>
+    <a tappable (click)="goRegister()">Registrasi?</a>
   </div>
 </ion-content>

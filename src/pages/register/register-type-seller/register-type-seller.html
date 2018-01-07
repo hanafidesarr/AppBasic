@@ -1,8 +1,10 @@
 <ion-content padding>
   <ion-row>
     <ion-col *ngFor="let typeSeller of typeSellers" col-6 text-center>
+      <div (click)="doTypeSeller(typeSeller.value)">
       <img src="{{typeSeller.image}}">
       <div>{{typeSeller.displayName}}</div>
+    </div>
     </ion-col>
   </ion-row>
 </ion-content>

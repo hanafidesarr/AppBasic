@@ -35,8 +35,10 @@ export class RegisterTypeSellerPage {
         this._navCtrl.push('HomePage');
       }, (err) => {
         this._sharedServices.hideLoader();
-        this._sharedServices.errorToast('Error')
+        this._sharedServices.errorToast(err)
       })
+    }, (error)=>{
+      this._sharedServices.errorToast(error)
     })
   }
 

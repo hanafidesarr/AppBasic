@@ -48,7 +48,7 @@ export class LoginPage {
         this._navCtrl.push('HomePage')
       }, (err) => {
         this._sharedServices.hideLoader();
-        this._sharedServices.errorToast('Error')
+        this._sharedServices.errorToast(err)
       })
     })
   }

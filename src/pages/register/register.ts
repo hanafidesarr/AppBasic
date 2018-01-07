@@ -31,10 +31,10 @@ export class RegisterPage {
 
   buildForm() {
     this.registerForm = this._formBuilder.group({
-      email: ['hanafi@yahoo.com', [Validators.required, CustomValidators.email]],
-      phone: ['085798103294', Validators.required],
-      password: ['123456', Validators.required],
-      password_confirmation: ['123456', Validators.required]
+      email: ['', [Validators.required, CustomValidators.email]],
+      phone: ['', Validators.required],
+      password: ['', Validators.required],
+      password_confirmation: ['', Validators.required]
     });
   }
 
